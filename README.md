@@ -8,5 +8,5 @@ My notes on the SQL. It consists of SQL Practice problems and solution from diff
 Section 1 - Setup Infrastructure
 - [01](MicrosoftSQLServer/Setup/README.md) Setup Microsoft SQL Server
 
-Section 2 - Problems on MS SQL Server
+Section 2 - Problems on Microsoft SQL Server
 - [01](NORTHWND/NORTHWND/01/README.md) Problems on North Wind DB, Set 1
