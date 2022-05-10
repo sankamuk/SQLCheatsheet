@@ -6,37 +6,37 @@
 
 ## Challanges
 
-- 1. Return all fields from Table Shippers
+- Return all fields from Table Shippers
 
 ```
 select * from shippers;
 ```
 
-- 2. Select only two columns from Categories table.
+- Select only two columns from Categories table.
 
 ```
 select CategoryName, Description from Categories;
 ```
 
-- 3. Fetch first name lastname and hiredate of employees whose title is Sales Representative.
+- Fetch first name lastname and hiredate of employees whose title is Sales Representative.
 
 ```
 select FirstName, LastName, HireDate from Employees where Title like 'Sales Representative';
 ```
 
-- 4. Fetch first name lastname and hiredate of employees whose title is Sales Representative and live in USA.
+- Fetch first name lastname and hiredate of employees whose title is Sales Representative and live in USA.
 
 ```
 select FirstName, LastName, HireDate from Employees where Title like 'Sales Representative' and Country = 'USA';
 ```
 
-- 5. Show all orders from specific Employee (id=5)
+- Show all orders from specific Employee (id=5)
 
 ```
 select * from Orders where employeeid = 5;
 ```
 
-- 6. For suplier print SupplierID, ContactName and ContactTitle where ContactTitle is not Marketing Manager
+- For suplier print SupplierID, ContactName and ContactTitle where ContactTitle is not Marketing Manager
 
 ```
 select SupplierID, ContactName, ContactTitle from Suppliers where ContactTitle <> 'Marketing Manager';
@@ -44,37 +44,37 @@ select SupplierID, ContactName, ContactTitle from Suppliers where ContactTitle <
 
 > NOTE: One can also use '!=' in place of '<>'
 
-- 7. Products table print ProductID and ProductName where ProductName include 'queso'
+- Products table print ProductID and ProductName where ProductName include 'queso'
 
 ```
 select ProductID, ProductName from Products where ProductName like '%queso%';
 ```
 
-- 8. View OrderID, CustomerID and ShipCountry from Orders where ShipCountry is either France or Belgium.
+- View OrderID, CustomerID and ShipCountry from Orders where ShipCountry is either France or Belgium.
 
 ```
 select OrderID, CustomerID, ShipCountry from Orders where ShipCountry = 'France' or ShipCountry = 'Belgium';
 ```
 
-- 9. View OrderID, CustomerID and ShipCountry from Orders where ShipCountry is any South American country ('Brazil', 'Mexico', 'Argentina', 'Venezuela')
+- View OrderID, CustomerID and ShipCountry from Orders where ShipCountry is any South American country ('Brazil', 'Mexico', 'Argentina', 'Venezuela')
 
 ```
 select OrderID, CustomerID, ShipCountry from Orders where ShipCountry IN ('Brazil', 'Mexico', 'Argentina', 'Venezuela');
 ```
 
-- 10. For all employee show them with FirstName, LastName, Title and BirthDate but order result by BirthDate so that oldest employee shown first.
+- For all employee show them with FirstName, LastName, Title and BirthDate but order result by BirthDate so that oldest employee shown first.
 
 ```
 select FirstName, LastName, Title, BirthDate from Employees order by BirthDate ASC;
 ```
 
-- 11. In previous query extract only date portion of Birthdate and omit time portion.
+- In previous query extract only date portion of Birthdate and omit time portion.
 
 ```
 select FirstName, LastName, Title, CAST(BirthDate AS DATE) as BirthDate from Employees order by BirthDate ASC;
 ```
 
-- 12. Create Fullname by concatinating first and lastname name.
+- Create Fullname by concatinating first and lastname name.
 
 ```
 select CONCAT(FirstName, ' ', LastName) as Fullname from Employees;
@@ -91,7 +91,7 @@ OR
 select Fullname = FirstName + ' ' + LastName from Employees;
 ```
 
-- 13. From Order Details calculate Total Price from UnitPrice and Quantity.
+- From Order Details calculate Total Price from UnitPrice and Quantity.
 
 ```
 select OrderID, UnitPrice, Quantity, (UnitPrice * Quantity) as TotalPrice from [Order Details];
@@ -102,13 +102,13 @@ OR
 select Top 10 OrderID, UnitPrice, Quantity, (UnitPrice * Quantity) as TotalPrice from [Order Details]; (Top 10)
 ```
 
-- 14. How many customer we have.
+- How many customer we have.
 
 ```
 select count(*) AS TotalCustomer from Customers;
 ```
 
-- 15. Date of the first order.
+- Date of the first order.
 
 ```
 select Top 1 OrderDate from Orders order by OrderDate ASC;
@@ -120,19 +120,19 @@ OR
 select MIN(OrderDate) from Orders;
 ```
 
-- 16. Show countries where there is customer.
+- Show countries where there is customer.
 
 ```
 select DISTINCT country from Customers;
 ```
 
-- 17. Show all ContactTitle and count for each from Customer.
+- Show all ContactTitle and count for each from Customer.
 
 ```
 select ContactTitle, count(*) AS Total from Customers group by ContactTitle order by Total;
 ```
 
-- 18. For each product we want to show ProductID, ProductName and CompanyName of Supplier of the product. Also sort result by Productid.
+- For each product we want to show ProductID, ProductName and CompanyName of Supplier of the product. Also sort result by Productid.
 
 ```
 select ProductID, ProductName, CompanyName from Products join Suppliers on Products.supplierid = Suppliers.supplierid order by ProductID;
@@ -144,13 +144,13 @@ OR
 select ProductID, ProductName, CompanyName from Products, Suppliers where Products.supplierid = Suppliers.supplierid order by ProductID;
 ```
 
-- 19. Show orders details OrderID, OrderDate along with shippers CompanyName. Result should be shorted by OrderID and only list order with Orderid less than 10300.
+- Show orders details OrderID, OrderDate along with shippers CompanyName. Result should be shorted by OrderID and only list order with Orderid less than 10300.
 
 ```
 select OrderID, OrderDate, CompanyName from Orders JOIN Shippers ON Orders.ShipVia = Shippers.ShipperID where OrderID < 10300 order by OrderID;
 ```
 
-- 20. Total number of product in each catagory and sort result by it in descending order.
+- Total number of product in each catagory and sort result by it in descending order.
 
 ```
 select CategoryID, count(*) AS TotalPerCatagory from Products group by CategoryID order by TotalPerCatagory DESC;
@@ -158,19 +158,19 @@ select CategoryID, count(*) AS TotalPerCatagory from Products group by CategoryI
 select Categories.CategoryName, PC.TotalPerCatagory from Categories JOIN (select CategoryID, count(*) AS TotalPerCatagory from Products group by CategoryID) as PC ON Categories.CategoryID = PC.CategoryID order by 2 DESC;
 ```
 
-- 21. Find total number of customer per country and city.
+- Find total number of customer per country and city.
 
 ```
 select Country, City, COUNT(*) AS TotalCustomer from Customers group by Country, City order by TotalCustomer;
 ```
 
-- 22. Find Products which need to be reordered, i.e. UnitsInStock less than ReorderLevel, ignoring UnitsInOrders and discontinued and order result by ProductID.
+- Find Products which need to be reordered, i.e. UnitsInStock less than ReorderLevel, ignoring UnitsInOrders and discontinued and order result by ProductID.
 
 ```
 select ProductID, UnitsInStock, ReorderLevel from Products where UnitsInStock < ReorderLevel order by ProductID;
 ```
 
-- 24. Find Products which need to be reordered, logic is as below
+- Find Products which need to be reordered, logic is as below
 
 UnitsInStock + UnitsOnOrder <= ReorderLevel 
 
@@ -180,7 +180,7 @@ also the Product should not be disconitnued.
 select ProductID, ProductName, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued from Products where (UnitsInStock + UnitsOnOrder) <= ReorderLevel and Discontinued = 0 order by ProductID;
 ```
 
-- 25. List of all customer shorted by region (alphabetically) but keep null region customer at the end and same region customer should be sorted by CustomerID
+- List of all customer shorted by region (alphabetically) but keep null region customer at the end and same region customer should be sorted by CustomerID
 
 ```
 select CustomerID, Region from (select CASE WHEN Region IS NULL THEN 1 ELSE 0 END AS DUMMY, CustomerID, Region from Customers order by DUMMY, Region, CustomerID) as C;
@@ -192,19 +192,19 @@ OR
 select CustomerID, Region from Customers order by CASE WHEN Region IS NULL THEN 1 ELSE 0 END, Region, CustomerID;
 ```
 
-- 26. Top 3 ship country with highest average flieght overall in descending order or average flieght.
+- Top 3 ship country with highest average flieght overall in descending order or average flieght.
 
 ```
 select TOP 3 ShipCountry, AVG(Freight) AS AVG_Freight from orders group by ShipCountry order by AVG_Freight DESC;
 ```
 
-- 27. Top 3 ship countries with average flieght overall only for orders 1996 in descending order or average flieght.
+- Top 3 ship countries with average flieght overall only for orders 1996 in descending order or average flieght.
 
 ```
 select TOP 3 ShipCountry, AVG(Freight) AS AVG_Freight from orders where YEAR(OrderDate) = 1996 group by ShipCountry order by AVG_Freight DESC;
 ```
 
-- 28. Show EmployeeID, LastName, OrderID, ProductName and Quantity for all orders and sort them on OrderID, ProductID.
+- Show EmployeeID, LastName, OrderID, ProductName and Quantity for all orders and sort them on OrderID, ProductID.
 
 ```
 select orders.OrderID, [Order Details].ProductID, orders.EmployeeID, LastName, Products.ProductName, Quantity 
@@ -214,7 +214,7 @@ JOIN Products ON [Order Details].ProductID = Products.ProductID
 order by orders.OrderID, [Order Details].ProductID;
 ```
 
-- 29. Find customers who never placed any orders.
+- Find customers who never placed any orders.
 
 ```
 select CompanyName, Customers.CustomerID from Customers LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID 
@@ -227,14 +227,14 @@ OR
 select CompanyName, CustomerID from Customers where CustomerID NOT IN (select DISTINCT CustomerID from Orders)
 ```
 
-- 30. For employee Margaret Peacock id 4, check all customer who never placed any order with her.
+- For employee Margaret Peacock id 4, check all customer who never placed any order with her.
 
 ```
 select CompanyName, CustomerID from Customers where CustomerID NOT IN 
 (select DISTINCT CustomerID from Orders JOIN Employees ON orders.EmployeeID = Employees.EmployeeID where Employees.EmployeeID = 4);
 ```
 
-- 31.1. Find customer who had made atleast one order with total value (not including discount) equal to or more 10000. For year 1998 only.
+- A Find customer who had made atleast one order with total value (not including discount) equal to or more 10000. For year 1998 only.
 
 ```
 select CustomerID, CompanyName from Customers where CustomerID in
@@ -244,7 +244,7 @@ where YEAR(Orders.OrderDate) = 1998 group by Orders.OrderID, Orders.CustomerID
 having SUM([Order Details].UnitPrice * [Order Details].Quantity) >= 10000)
 ```
 
-- 31.2. Find order details where customer had made atleast one order with total value (not including discount) equal to or more 10000. For year 1998 only.
+- B Find order details where customer had made atleast one order with total value (not including discount) equal to or more 10000. For year 1998 only.
 
 ```
 select Customers.CustomerID, CompanyName, OrderID, TOTALAMOUNT from Customers,
@@ -255,7 +255,7 @@ having SUM([Order Details].UnitPrice * [Order Details].Quantity) >= 10000) AS OD
 where Customers.CustomerID = OD.CustomerID
 ```
 
-- 32. Find customer who had made order with total value (not including discount) equal to or more 15000. For year 1998 only.
+- Find customer who had made order with total value (not including discount) equal to or more 15000. For year 1998 only.
 
 ```
 select Customers.CustomerID, CompanyName, SUM(TOTALAMOUNT) AS TOTALBYCUSTOMER from Customers,
@@ -267,7 +267,7 @@ group by Customers.CustomerID, CompanyName
 having SUM(TOTALAMOUNT) >= 15000
 ```
 
-- 33. Add discount into the mix.
+- Add discount into the mix.
 
 ```
 select Customers.CustomerID, CompanyName, SUM(TOTALAMOUNT) AS TOTALBYCUSTOMER from Customers,
@@ -279,13 +279,13 @@ group by Customers.CustomerID, CompanyName
 having SUM(TOTALAMOUNT) >= 15000
 ```
 
-- 34. Show all order made on the last day of the month.
+- Show all order made on the last day of the month.
 
 ```
 select EmployeeID, OrderID, CAST(OrderDate as Date) AS OrderDate from Orders where CAST(OrderDate as Date) = EOMONTH(OrderDate) order by EmployeeID, OrderID;
 ```
 
-- 35. Show 10 orders with most number of items in it.
+- Show 10 orders with most number of items in it.
 
 ```
 select Top 2 PERCENT Orders.OrderID, Count(*) AS TotalItems
@@ -293,7 +293,7 @@ from [Order Details] JOIN Orders ON Orders.OrderID = [Order Details].OrderID
 group by Orders.OrderID order by TotalItems
 ```
 
-- 36. Show random 2% of the orders.
+- Show random 2% of the orders.
 
 ```
 select Top 2 PERCENT OrderID from Orders order by NEWID();
@@ -301,25 +301,25 @@ select Top 2 PERCENT OrderID from Orders order by NEWID();
 
 > Note NEWID returns Globally unique value per row.
 
-- 37. Identify orders which has atleast 2 different items in quantity more than 60.
+- Identify orders which has atleast 2 different items in quantity more than 60.
 
 ```
 select OrderID, Quantity from [Order Details] where Quantity >= 60 group by OrderID, Quantity having count(*) > 1
 ```
 
-- 38. Show details of the order listed above.
+- Show details of the order listed above.
 
 ```
 select * from Orders where OrderID in (select OrderID from [Order Details] where Quantity >= 60 group by OrderID, Quantity having count(*) > 1)
 ```
 
-- 39. Find orders which arrive late.
+- Find orders which arrive late.
 
 ```
 select * from Orders where RequiredDate < ShippedDate;
 ```
 
-- 40. Find out which sales person have more order arriving late.
+- Find out which sales person have more order arriving late.
 
 ```
 select EmployeeID, count(*) as TotalLateOrder into #LORD from Orders where RequiredDate < ShippedDate group by EmployeeID
@@ -332,7 +332,7 @@ DROP TABLE #TORD
 
 > Note how we create Local temporary table with #. [LINK](https://www.red-gate.com/simple-talk/databases/sql-server/t-sql-programming-sql-server/temporary-tables-in-sql-server/)
 
-- 41. In previous query show only 2 digit after decimal point.
+- In previous query show only 2 digit after decimal point.
 
 ```
 select EmployeeID, count(*) as TotalLateOrder into #LORD from Orders where RequiredDate < ShippedDate group by EmployeeID
@@ -343,7 +343,7 @@ DROP TABLE #LORD
 DROP TABLE #TORD
 ```
 
-- 42. Catagorize customer based on the amount of order for him/her in 1998. Groups to be created as below
+- Catagorize customer based on the amount of order for him/her in 1998. Groups to be created as below
     - Upto 1000
     - From 1000 to 5000
     - From 5000 to 10000
@@ -360,7 +360,7 @@ from #CUSTORD order by OrderGroup
 DROP TABLE #CUSTORD
 ```
 
-- 45. In above result show Customer group with percentage in each and sort by total in each group.
+- In above result show Customer group with percentage in each and sort by total in each group.
 
 ```
 select Orders.CustomerID AS CustomerID, SUM([Order Details].UnitPrice * [Order Details].Quantity * (1 - [Order Details].Discount)) AS TOTALAMOUNT into #CUSTORD
@@ -381,14 +381,14 @@ DROP TABLE #CUSTORDGRP
 DROP TABLE #CUSTORD
 ```
 
-- 46. List all countries where supplier and customer are based.
+- List all countries where supplier and customer are based.
 
 ```
 select distinct country from Suppliers union
 select distinct country from Customers
 ```
 
-- 47. We want to get country tagged as whether they are supplier or customer or both
+- We want to get country tagged as whether they are supplier or customer or both
 
 ```
 select country, 'Both' AS Type from (select distinct country from Suppliers INTERSECT select distinct country from Customers) AS T1 UNION
@@ -396,7 +396,7 @@ select country, 'Suppliers' AS Type from (select distinct country from Suppliers
 select country, 'Customers' AS Type from (select distinct country from Customers EXCEPT select distinct country from Suppliers) AS T3
 ```
 
-- 48. We need country with total Supplier and Customer
+- We need country with total Supplier and Customer
 
 ```
 select TS.country AS SCountry, TC.country AS CCountry, TotalSuppliers, TotalCustomers into #AGGTAB from
@@ -408,13 +408,13 @@ OR
 select COALESCE(SCountry, CCountry) AS Country, TotalSuppliers, TotalCustomers from #AGGTAB
 ```
 
-- 49. From Orders table we need to view the first order for each ShipCountry. For such order we want to see OrderID, CustomerID, OrderDate and ShipCountry.
+- From Orders table we need to view the first order for each ShipCountry. For such order we want to see OrderID, CustomerID, OrderDate and ShipCountry.
 
 ```
 select OrderID, CustomerID, ShipCountry, OrderDate from (select OrderID, CustomerID, ShipCountry, OrderDate, DENSE_RANK() OVER(PARTITION BY ShipCountry ORDER BY OrderDate) as ORDER_TIME from Orders) AS T where ORDER_TIME = 1
 ```
 
-- 50. Show customer who have made more than one order in 5 day period.
+- Show customer who have made more than one order in 5 day period.
 
 --- Wromg
 
