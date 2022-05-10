@@ -10,3 +10,4 @@ My notes on the SQL. It consists of SQL Practice problems and solution from diff
 
 ***Section 2*** - Problems on Microsoft SQL Server
 - [01](MicrosoftSQLServer/NORTHWND/01/README.md) Problems on North Wind DB, Set 1
+- [02](MicrosoftSQLServer/AdventureWorks2012/01/README.md) Problems on Adventure Works 2012 DB, Set 1
